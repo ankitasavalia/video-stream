@@ -1,0 +1,26 @@
+<%= form_with(model: @video) do |form| %>
+  
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :main_video %>
+    <%= form.file_field :main_video, accept: "video/*" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :thumbnail_image %>
+    <%= form.file_field :thumbnail_image %>
+  </div>
+
+  <div class="field">
+    <%= form.label :categories %>
+    <%= form.select :categories, options_for_select(['Web development', 'Application development', 'Agile method', 'Management meetings', 'Team work']) %>
+  </div>  
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

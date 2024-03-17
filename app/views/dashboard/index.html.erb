@@ -12,6 +12,8 @@
 
 All organiztions
 
+create video <%= link_to 'create_video', new_video_path, method: :post %>
+
 <table>
   <tr>
     <th>name</th>
@@ -25,6 +27,27 @@ All organiztions
         <%= email %>
       </td>
       <% end %>
+    </tr>
+  <% end %>
+</table>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th>Thumbnail_image</th>
+    <th>Video</th>
+    <th>Categories</th>
+  </tr>
+  <% @videos.each do |video| %>
+    <tr>
+      <td><%= video.description %></td>
+      <td><%= image_tag(url_for(video.thumbnail_image)) %></td>
+      <td>
+        <video controls>
+          <source src="<%= url_for(video.main_video) %>">
+        </video>
+      </td>
+      <td><%= video.categories %></td>
     </tr>
   <% end %>
 </table>
