@@ -1,4 +1,4 @@
-This is home page
+
 
 <% if user_signed_in? %>
   <h1>Welcome Home, <%= current_user.email %></h1>
@@ -8,4 +8,24 @@ This is home page
   <h1>Home</h1>
   <%= link_to 'Sign in', new_user_session_path %>
 <% end %>
+
+
+All organiztions
+
+<table>
+  <tr>
+    <th>name</th>
+    <th>users</th>
+  </tr>
+  <% @organizations.each do |organization| %>
+    <tr>
+      <td><%= organization.name %></td>
+      <% organization.users.select(:email).each do |email| %>
+      <td>
+        <%= email %>
+      </td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
 
