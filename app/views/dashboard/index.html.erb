@@ -41,14 +41,29 @@ create video <%= link_to 'create_video', new_video_path, method: :post %>
   <% @videos.each do |video| %>
     <tr>
       <td><%= video.description %></td>
-      <td><%= image_tag(url_for(video.thumbnail_image)) %></td>
+
+      <td><%= image_tag(url_for(video.thumbnail_image), height: 50, width: 50) if video.thumbnail_image.attached? %></td>
       <td>
-        <video controls>
-          <source src="<%= url_for(video.main_video) %>">
+        <%# play_video = ActiveStorage::Service::DiskService.new(root: Rails.root.to_s + '/tmp/').send(:path_for, "video-#{video.main_video.filename}.mp4") %>
+        <!-- <video id="video_player" class="video-js vjs-default-skin" controls preload="auto" width="320" height="264" data-setup='{ "src": "<%#= play_video%>" }'> -->
+          
+        <!-- </video> -->
+
+        <video 
+          id="my-player"
+            class="video-js vjs-theme-forest"
+            controls
+            preload="auto"
+            poster="//vjs.zencdn.net/v/oceans.png"
+            data-setup='{}'
+        >
+        <source src="<%= rails_blob_path(video.main_video)%>" />
         </video>
       </td>
       <td><%= video.categories %></td>
     </tr>
   <% end %>
 </table>
+
+
 

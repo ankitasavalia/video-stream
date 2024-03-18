@@ -1,5 +1,5 @@
 <%= form_with(model: @video) do |form| %>
-  
+  <div id=videoErrors></div>
   <div class="field">
     <%= form.label :description %>
     <%= form.text_field :description %>
@@ -7,7 +7,7 @@
 
   <div class="field">
     <%= form.label :main_video %>
-    <%= form.file_field :main_video, accept: "video/*" %>
+    <%= form.file_field :main_video %>
   </div>
 
   <div class="field">
